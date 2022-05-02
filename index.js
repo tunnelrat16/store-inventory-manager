@@ -69,3 +69,31 @@ input.addEventListener("submit", (event) => {
     console.log(inventory)
     return inventory
 })
+
+function setCategory(item) {
+    if (item.item_name.includes("Aged Brie")) {
+        item.category = "Aged Brie"
+    } else if (item.item_name.includes("Sulfuras")) {
+        item.category = "Sulfuras"
+    } else if (item.item_name.includes("Backstage")) {
+        item.category = "Backstage"
+    } else if (item.item_name.includes("Conjured")) {
+        item.category = "Conjured"
+    }
+    return item
+}
+
+report.addEventListener("submit", (event) => {
+            event.preventDefault()
+            const details = document.createElement("div")
+            details.classList = "details"
+            details.innerHTML = `
+        <h3>Item</p>
+        <p>Sell In</p>
+        <p>Quality</p>
+    `
+            reportOutput.replaceChildren(details)
+            const formData = new FormData(event.target)
+            const reportDate = `${formData.get("report_date")}`
+            let items = JSON.parse { JSON.stringify(inventory) }
+            items.forEach(item => {
