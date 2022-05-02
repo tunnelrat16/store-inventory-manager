@@ -11,13 +11,13 @@ let inventory = [{
 }, {
     item_name: "Aged Brie",
     sell_in: 2,
-    quality: 20,
+    quality: 0,
     date_added: 0,
     category: "Aged Brie",
 }, {
     item_name: "Elixir of the Mongoose",
     sell_in: 5,
-    quality: 0,
+    quality: 7,
     date_added: 0,
     category: "none",
 }, {
@@ -65,8 +65,8 @@ input.addEventListener("submit", (event) => {
         category: "none",
     }
     setCategory(item)
-    qualitySet(item)
-    inventory - [...inventory, item]
+    qualityRules(item)
+    inventory = [...inventory, item]
     console.log(inventory)
     return inventory
 })
@@ -84,17 +84,6 @@ function setCategory(item) {
     return item
 }
 
-function qualitySet(item) {
-    if (item.category === "Sulfuras") {
-        item.quality = 80
-    } else if (item.quality >= 50) {
-        item.quality = 50
-    } else if (item.quality < +0) {
-        item.quality = 0
-    }
-    return item
-}
-
 report.addEventListener("submit", (event) => {
     event.preventDefault()
     const details = document.createElement("div")
@@ -106,7 +95,7 @@ report.addEventListener("submit", (event) => {
     `
     reportOutput.replaceChildren(details)
     const formData = new FormData(event.target)
-    const reportDate = `${formData.get("report_date")}`
+    const reportDate = `${formData.get("report_date")}` * 1
     let items = JSON.parse(JSON.stringify(inventory))
     items.forEach(item => {
         degradeItem(item, reportDate)
@@ -122,24 +111,28 @@ function degradeItem(item, reportDate) {
         case "Sulfuras":
             break;
         case "Aged Brie":
-            item.sell_in -= reportDate
-            item.quality += reportDate
+            item.sell_in -= reportDate * 1
+            item.quality += reportDate * 1
             break;
         case "Conjured":
             item.sell_in -= reportDate
-            item.quality -= (reportDate * 2)
+            if (item.sell_in >= 0) {
+                item.quality -= (reportDate * 2)
+            } else {
+                item.quality -= ((2 * mustSellBy) + (4 * (reportDate - mustSellBy)))
+            }
             break;
         case "Backstage":
             item.sell_in -= reportDate
             if (item.sell_in > 10) {
                 item.quality += reportDate
-            } else if (item.sell_in <= 10 && item, _sell_in > 5) {
+            } else if (item.sell_in <= 10 && item.sell_in > 5) {
                 if (mustSellBy > 10) {
                     item.quality += ((mustSellBy - 9) + (2 * (reportDate - (mustSellBy - 10))))
                 } else {
                     item.quality += (reportDate * 2)
                 }
-            } else if (item.sell_in <= 5 && item, _sell_in > 0) {
+            } else if (item.sell_in <= 5 && item.sell_in > 0) {
                 if (mustSellBy > 10) {
                     item.quality += ((mustSellBy - 10) - 3 + (3 * (reportDate - (mustSellBy - 10))))
                 } else if (mustSellBy > 5) {
