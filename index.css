@@ -1,0 +1,19 @@
+html {
+    background: rgba(0, 0, 0, 0.5) url(shop_background.jpg) no-repeat center center fixed;
+    /*image courtesy Jacob Scaife*/
+    background-size: cover;
+    /* font-family: 'Harry Potter', sans-serif; */
+    background-blend-mode: darken;
+}
+
+h1 {
+    color: white;
+}
+
+label {
+    color: white;
+}
+
+div {
+    color: white;
+}
