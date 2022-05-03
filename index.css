@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 html {
     background: rgba(0, 0, 0, 0.5) url(shop_background.jpg) no-repeat center center fixed;
     /*image courtesy Jacob Scaife*/
     background-size: cover;
-    /* font-family: 'Harry Potter', sans-serif; */
+    font-family: 'Press Start 2P', cursive;
     background-blend-mode: darken;
 }
 
@@ -15,7 +16,9 @@ label {
 }
 
 div.details {
-    color: white;
+    margin-top: 20px;
+    color: yellow;
+    font-size: larger;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: repeat(1fr, 2);
@@ -43,9 +46,37 @@ div.list {
 #input input {
     grid-column: 1 / span 1;
     margin-top: 10px;
+    font-family: 'Press Start 2P', cursive;
+    background-color: rgb(189, 189, 189);
+    color: black;
 }
 
 #input button {
     grid-column: 1 / span 1;
     margin-top: 40px;
+    font-family: 'Press Start 2P', cursive;
+    background-color: dimgrey;
+    color: black;
+}
+
+#report {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr;
+    grid-template-rows: 1 fr
+}
+
+#report button {
+    grid-column: 1 / span 1;
+    grid-template-rows: 2 / span 1;
+    margin-top: 40px;
+    font-family: 'Press Start 2P', cursive;
+    background-color: dimgray;
+    color: black
+}
+
+#report input {
+    background-color: rgb(189, 189, 189);
+    font-family: 'Press Start 2P', cursive;
+    color: black
 }
