@@ -68,7 +68,9 @@ input.addEventListener("submit", (event) => {
     qualityRules(item)
     inventory = [...inventory, item]
     console.log(inventory)
+    event.target.reset();
     return inventory
+
 })
 
 function setCategory(item) {
@@ -89,7 +91,7 @@ report.addEventListener("submit", (event) => {
     const details = document.createElement("div")
     details.classList = "details"
     details.innerHTML = `
-        <h3>Item</p>
+        <p>Item</p>
         <p>Sell In</p>
         <p>Quality</p>
     `
@@ -103,6 +105,7 @@ report.addEventListener("submit", (event) => {
             reportOutput.append(createListing(item))
         }
     })
+    event.target.reset();
 })
 
 function degradeItem(item, reportDate) {
